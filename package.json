@@ -1,0 +1,50 @@
+{
+  "name": "sales",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "set NODE_ENV=development & nodemon ./src/index.js",
+    "start": "node ./src/index.js",
+    "db": "node ./src/db/backupdb.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bwip-js": "^3.0.5",
+    "compression": "^1.7.4",
+    "concurrently": "^7.0.0",
+    "connect-mssql-v2": "^3.1.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^3.5.0",
+    "express-session": "^1.17.2",
+    "helmet": "^3.16.0",
+    "hpp": "^0.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mssql": "^7.2.1",
+    "multer": "^1.4.3",
+    "node-fetch": "^3.0.0",
+    "nodemailer": "^6.6.3",
+    "number-to-words": "^1.2.4",
+    "pdfmake": "^0.2.5",
+    "prettyjson": "^1.2.1",
+    "sharp": "^0.28.2",
+    "swagger-ui-express": "^4.3.0",
+    "tedious": "^14.5.0",
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "server": "172.16.20.104",
+  "authentication": {
+    "type": "default",
+    "options": {
+      "userName": "siglogin",
+      "password": "sig.2022@sales.2022!"
+    }
+  },
+  "database": "sig_db",
+  "options": {
+    "trustServerCertificate": true
+  }
+}

@@ -1,0 +1,2935 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "SIG APIs",
+    "description": "SIG APIs",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "mijinitechsigapi.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Mijinitech",
+      "description": "SIG APIs"
+    }
+  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+
+  "paths": {
+    "/api/v1/users/signup": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create New User",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "username": { "type": "string" },
+                "phone": { "type": "string" },
+                "email": { "type": "string" },
+                "profile": { "type": "string" },
+                "password": { "type": "string" },
+                "gender": { "type": "string" },
+                "userImage": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/users/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Login",
+        "responses": {
+          "200": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/users/allUsers": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get All Users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/users/singleUser/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get One User",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/users/userPassword/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get User's Password",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+
+    "/api/v1/users/deleteUser/{id}": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete a User",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/users/updateUser/{id}": {
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update User",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": { "type": "string" },
+                "lastName": { "type": "string" },
+                "username": { "type": "string" },
+                "phone": { "type": "string" },
+                "email": { "type": "string" },
+                "profile": { "type": "string" },
+                "gender": { "type": "string" },
+                "userImage": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/users/updatePassword/{id}": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Update User's Password",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "currentPassword": { "type": "string" },
+                "newPassword": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/users/resetPassword/{id}": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Change User's Password",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+
+    "/api/v1/profile/createProfile": {
+      "post": {
+        "tags": ["Profiles"],
+        "summary": "Create a new profile",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userType": { "type": "string" },
+                "accessLevel": { "type": "integer" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/profile/allProfiles": {
+      "get": {
+        "tags": ["Profiles"],
+        "summary": "Get All Profiles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/profile/singleProfile/{id}": {
+      "get": {
+        "tags": ["Profiles"],
+        "summary": "Get One Profile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/profile/deleteProfile/{id}": {
+      "delete": {
+        "tags": ["Profiles"],
+        "summary": "Delete a Profile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/profile/updateProfile/{id}": {
+      "put": {
+        "tags": ["Profiles"],
+        "summary": "Update Profile",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userType": { "type": "string" },
+                "accessLevel": { "type": "integer" }
+              }
+            }
+          }
+        ]
+      }
+    },
+
+    "/api/v1/category/createCategory": {
+      "post": {
+        "tags": ["Categories"],
+        "summary": "Create a new Category",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/category/allCategories": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Get All Categories",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/category/singleCategory/{id}": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Get One Category",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/category/deleteCategory/{id}": {
+      "delete": {
+        "tags": ["Categories"],
+        "summary": "Delete a Category",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/category/updateCategory/{id}": {
+      "put": {
+        "tags": ["Categories"],
+        "summary": "Update Category",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/operation/createOperation": {
+      "post": {
+        "tags": ["Operations"],
+        "summary": "Create a new Operation",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "operation": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/operation/allOperations": {
+      "get": {
+        "tags": ["Operations"],
+        "summary": "Get All Operations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/operation/singleOperation/{id}": {
+      "get": {
+        "tags": ["Operations"],
+        "summary": "Get One Operation",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/operation/deleteOperation/{id}": {
+      "delete": {
+        "tags": ["Operations"],
+        "summary": "Delete an Operation",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/operation/updateOperation/{id}": {
+      "put": {
+        "tags": ["Operations"],
+        "summary": "Update Operation",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "operation": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/businessType/createBusinessType": {
+      "post": {
+        "tags": ["Business Type"],
+        "summary": "Create a new Business Type",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "businessType": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/businessType/allBusinessTypes": {
+      "get": {
+        "tags": ["Business Type"],
+        "summary": "Get All Business Types",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/businessType/singleBusinessType/{id}": {
+      "get": {
+        "tags": ["Business Type"],
+        "summary": "Get One Business Type",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/businessType/deleteBusinessType/{id}": {
+      "delete": {
+        "tags": ["Business Type"],
+        "summary": "Delete a Business Type",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/businessType/updateBusinessType/{id}": {
+      "put": {
+        "tags": ["Business Type"],
+        "summary": "Update Business Type",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "businessType": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/country/createCountry": {
+      "post": {
+        "tags": ["Countries"],
+        "summary": "Create a new Country",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "country": { "type": "string" },
+                "currency": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/country/allCountries": {
+      "get": {
+        "tags": ["Countries"],
+        "summary": "Get All Countries",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/country/singleCountry/{id}": {
+      "get": {
+        "tags": ["Countries"],
+        "summary": "Get One Country",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/country/deleteCountry/{id}": {
+      "delete": {
+        "tags": ["Countries"],
+        "summary": "Delete a Country",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/country/updateCountry/{id}": {
+      "put": {
+        "tags": ["Countries"],
+        "summary": "Update Country",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "country": { "type": "string" },
+                "currency": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/item/createItem": {
+      "post": {
+        "tags": ["Items"],
+        "summary": "Create a new item",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "batchName": { "type": "string" },
+                "itemName": { "type": "string" },
+                "description": { "type": "string" },
+                "level": { "type": "integer" },
+                "brand": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "image": { "type": "string" },
+                "sellingPrice": { "type": "integer" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/item/allItems": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get All Items",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/item/singleItem/{id}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get One Item",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/nobarcode": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Items With No barcodes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/scanBarcode/{barcode}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Item History",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "barcode",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/itemBatch/{batchName}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Items Of a Batch",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "batchName",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/itemExpiryDate/{date}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Expired Food",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/itemCreatedDate/{date}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Items By Date Created",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/itemCategory/{category}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get Items By Category",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "category",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+
+    "/api/v1/item/deleteItem/{id}": {
+      "delete": {
+        "tags": ["Items"],
+        "summary": "Delete an Item",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/item/updateItem/{id}": {
+      "put": {
+        "tags": ["Items"],
+        "summary": "Update an Item",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "itemName": { "type": "string" },
+                "description": { "type": "string" },
+                "itemOrigin": { "type": "string" },
+                "brand": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "sellingPrice": { "type": "number" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/item/soldItems": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get All Sold Items",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/returnedItem/createItem": {
+      "post": {
+        "tags": ["Returned Items"],
+        "summary": "Create a new item",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "barcode": { "type": "string" },
+                "reason": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "returnedBy": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/returnedItem/allItems": {
+      "get": {
+        "tags": ["Returned Items"],
+        "summary": "Get All Returned Items",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/returnedItem/singleItem/{id}": {
+      "get": {
+        "tags": ["Returned Items"],
+        "summary": "Get One Returned Item",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/returnedItem/deleteItem/{id}": {
+      "delete": {
+        "tags": ["Returned Items"],
+        "summary": "Delete a Returned Item",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/returnedItem/updateItem/{id}": {
+      "put": {
+        "tags": ["Returned Items"],
+        "summary": "Update Returned Item",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "barcode": { "type": "string" },
+                "reason": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "returnedBy": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/returnedItem/modifyItem/{barcode}": {
+      "patch": {
+        "tags": ["Returned Items"],
+        "summary": "Modify Returned Item State",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "barcode",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/returnedItem/itemReturnedDate/{date}": {
+      "get": {
+        "tags": ["Returned Items"],
+        "summary": "Get Items Returned from a certain date",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/stock/createStock": {
+      "post": {
+        "tags": ["Stock"],
+        "summary": "Create a new Stock",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "purchaseOrderNumber": { "type": "string" },
+                "receivedBy": { "type": "string" },
+                "deliveredBy": { "type": "string" },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": { "type": "string" },
+                      "batchNumber": { "type": "string" },
+                      "quantity": { "type": "integer" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/stock/allStocks": {
+      "get": {
+        "tags": ["Stock"],
+        "summary": "Get All Stock",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/stock/singleStock/{id}": {
+      "get": {
+        "tags": ["Stock"],
+        "summary": "Get One Stock",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/stock/deleteStock/{id}": {
+      "delete": {
+        "tags": ["Stock"],
+        "summary": "Delete Stock Item",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/stock/updateStock/{id}": {
+      "put": {
+        "tags": ["Stock"],
+        "summary": "Update Stock",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "purchaseOrderNumber": { "type": "string" },
+                "receivedBy": { "type": "string" },
+                "deliveredBy": { "type": "string" },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item": { "type": "string" },
+                      "batchNumber": { "type": "string" },
+                      "quantity": { "type": "integer" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/createSale": {
+      "post": {
+        "tags": ["Sale"],
+        "summary": "Create a new sale",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customer": { "type": "string" },
+                "receivedBy": { "type": "string" },
+                "receiverPhone": { "type": "string" },
+                "barcode": { "type": "string" },
+                "operationType": { "type": "string" },
+                "price": { "type": "number" },
+                "customerType": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/allSales": {
+      "get": {
+        "tags": ["Sale"],
+        "summary": "Get All Sale",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/sale/pendingSales": {
+      "get": {
+        "tags": ["Sale"],
+        "summary": "Get Pending Sales",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/sale/approvedSales": {
+      "get": {
+        "tags": ["Sale"],
+        "summary": "Get Approved Sales",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/sale/singleSale/{id}": {
+      "get": {
+        "tags": ["Sale"],
+        "summary": "Get One Sale",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/saleCreatedDate/{date}": {
+      "get": {
+        "tags": ["Sale"],
+        "summary": "Get Sales made from a certain date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/deleteSale/{id}": {
+      "delete": {
+        "tags": ["Sale"],
+        "summary": "Delete Sale ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/updateSale/{id}": {
+      "put": {
+        "tags": ["Sale"],
+        "summary": "Update Sale",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customer": { "type": "string" },
+                "receivedBy": { "type": "string" },
+                "receiverPhone": { "type": "string" },
+                "barcode": { "type": "string" },
+                "operationType": { "type": "string" },
+                "price": { "type": "number" },
+                "customerType": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/sale/modifySale/{barcode}": {
+      "patch": {
+        "tags": ["Sale"],
+        "summary": "Modify Sale State",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "barcode",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/warehouse/createWarehouse": {
+      "post": {
+        "tags": ["Warehouse"],
+        "summary": "Create a new warehouse",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "warehouseName": { "type": "string" },
+                "warehouseDetails": {
+                  "type": "object",
+                  "properties": {
+                    "manager": { "type": "string" },
+                    "location": { "type": "string" },
+                    "size": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/warehouse/allWarehouses": {
+      "get": {
+        "tags": ["Warehouse"],
+        "summary": "Get All Warehouses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/warehouse/singleWarehouse/{id}": {
+      "get": {
+        "tags": ["Warehouse"],
+        "summary": "Get One Warehouse",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/warehouse/deleteWarehouse/{id}": {
+      "delete": {
+        "tags": ["Warehouse"],
+        "summary": "Delete Warehouse ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/warehouse/updateWarehouse/{id}": {
+      "put": {
+        "tags": ["Warehouse"],
+        "summary": "Update Warehouse",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "warehouseName": { "type": "string" },
+                "warehouseDetails": {
+                  "type": "object",
+                  "properties": {
+                    "manager": { "type": "string" },
+                    "location": { "type": "string" },
+                    "size": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/suppliers/createSupplier": {
+      "post": {
+        "tags": ["Suppliers"],
+        "summary": "Create a new Supplier",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "supplierName": { "type": "string" },
+                "email": { "type": "string" },
+                "phone": { "type": "string" },
+                "country": { "type": "string" },
+                "businessType": { "type": "string" },
+                "supplierDetails": {
+                  "type": "object",
+                  "properties": {
+                    "location": { "type": "string" },
+                    "contract": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/suppliers/allSuppliers": {
+      "get": {
+        "tags": ["Suppliers"],
+        "summary": "Get All Suppliers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/suppliers/singleSupplier/{id}": {
+      "get": {
+        "tags": ["Suppliers"],
+        "summary": "Get One Supplier",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/suppliers/deleteSupplier/{id}": {
+      "delete": {
+        "tags": ["Suppliers"],
+        "summary": "Delete Supplier ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/suppliers/updateSupplier/{id}": {
+      "put": {
+        "tags": ["Suppliers"],
+        "summary": "Update Supplier",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "supplierName": { "type": "string" },
+                "email": { "type": "string" },
+                "phone": { "type": "string" },
+                "country": { "type": "string" },
+                "supplierDetails": {
+                  "type": "object",
+                  "properties": {
+                    "location": { "type": "string" },
+                    "contract": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/customer/createCustomer": {
+      "post": {
+        "tags": ["Customers"],
+        "summary": "Create a new Customer",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerName": { "type": "string" },
+                "email": { "type": "string" },
+                "phone": { "type": "string" },
+                "country": { "type": "string" },
+                "businessType": { "type": "string" },
+                "customerDetails": {
+                  "type": "object",
+                  "properties": {
+                    "location": { "type": "string" },
+                    "contract": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/customer/allCustomers": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get All Customers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/customer/singleCustomer/{id}": {
+      "get": {
+        "tags": ["Customers"],
+        "summary": "Get One Customer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/customer/deleteCustomer/{id}": {
+      "delete": {
+        "tags": ["Customers"],
+        "summary": "Delete Customer ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/customer/updateCustomer/{id}": {
+      "put": {
+        "tags": ["Customers"],
+        "summary": "Update Customer",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customerName": { "type": "string" },
+                "email": { "type": "string" },
+                "phone": { "type": "string" },
+                "country": { "type": "string" },
+                "businessType": { "type": "string" },
+                "customerDetails": {
+                  "type": "object",
+                  "properties": {
+                    "location": { "type": "string" },
+                    "contract": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/batch/createBatch": {
+      "post": {
+        "tags": ["Batches"],
+        "summary": "Create a new batch",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string" },
+                "brand": { "type": "string" },
+                "batchOrigin": { "type": "string" },
+                "description": { "type": "string" },
+                "category": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "supplier": { "type": "string" },
+                "unitBuyingPrice": { "type": "number" },
+                "unitSellingPrice": { "type": "number" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/batch/allBatches": {
+      "get": {
+        "tags": ["Batches"],
+        "summary": "Get All Batches",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/batch/singleBatch/{id}": {
+      "get": {
+        "tags": ["Batches"],
+        "summary": "Get One batch",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/batch/deleteBatch/{id}": {
+      "delete": {
+        "tags": ["Batches"],
+        "summary": "Delete batch ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/batch/updateBatch/{id}": {
+      "put": {
+        "tags": ["Batches"],
+        "summary": "Update batch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": { "type": "string" },
+                "brand": { "type": "string" },
+                "batchOrigin": { "type": "string" },
+                "description": { "type": "string" },
+                "category": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "supplier": { "type": "string" },
+                "unitBuyingPrice": { "type": "number" },
+                "unitSellingPrice": { "type": "number" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/batch/modifyBatch/{id}": {
+      "put": {
+        "tags": ["Batches"],
+        "summary": "Update batch Details",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "batchName": { "type": "string" },
+                "batchQuantity": { "type": "integer" },
+                "batchOrigin": { "type": "string" },
+                "description": { "type": "string" },
+                "category": { "type": "string" },
+                "warehouse": { "type": "string" },
+                "supplier": { "type": "string" },
+                "unitBuyingPrice": { "type": "number" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/order/createOrder": {
+      "post": {
+        "tags": ["Purchase Orders"],
+        "summary": "Create a new Order",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paymentMethod": { "type": "string" },
+                "supplier": { "type": "string" },
+                "totalPrice": { "type": "number", "format": "float" },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "batchNumber": { "type": "string" },
+                      "item": { "type": "string" },
+                      "quantity": { "type": "integer" },
+                      "unitBuyingPrice": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "totalBuyingPrice": {
+                        "type": "number",
+                        "format": "float"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/order/allOrders": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get All Purchase Orders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/order/pendingOrders": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get All Pending Purchase Orders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/order/approvedOrders": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get All Approved Purchase Orders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/order/singleOrder/{id}": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get One Purchase Order",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/order/orderCreatedDate/{date}": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get Purchase Orders From A certain Date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/order/ordersByPurchaseOrderNumber/{purchaseOrderNumber}": {
+      "get": {
+        "tags": ["Purchase Orders"],
+        "summary": "Get Purchase Orders From A certain Purchase Order Number",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "purchaseOrderNumber",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/order/deleteOrder/{id}": {
+      "delete": {
+        "tags": ["Purchase Orders"],
+        "summary": "Delete Purchase Order ",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/api/v1/order/updateOrder/{id}": {
+      "put": {
+        "tags": ["Purchase Orders"],
+        "summary": "Update A Purchase Order",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paymentMethod": { "type": "string" },
+                "supplier": { "type": "string" },
+                "totalPrice": { "type": "number", "format": "float" },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "batchNumber": { "type": "string" },
+                      "item": { "type": "string" },
+                      "quantity": { "type": "integer" },
+                      "unitBuyingPrice": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "totalBuyingPrice": {
+                        "type": "number",
+                        "format": "float"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/order/modifyOrder/{purchaseOrderNumber}": {
+      "patch": {
+        "tags": ["Purchase Orders"],
+        "summary": "Modify A Purchase Order To Approved or Pending",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "purchaseOrderNumber",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string" }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/print/printAllItems": {
+      "get": {
+        "tags": ["Printing Items"],
+        "summary": "Printing All Items Barcodes",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+
+  "definitions": {}
+}
